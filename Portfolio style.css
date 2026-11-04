@@ -1,0 +1,318 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-dark: #0f0f23;
+    --bg-alt: #1a1a33;
+    --accent: #a8b2ff;
+    --accent-soft: #8b9cd9;
+    --text-primary: #e6e6ff;
+    --text-secondary: #9999cc;
+    --card-bg: #1e1e3f;
+    --card-hover: #2a2a5c;
+    --gold: #ffd700;
+    --silver: #c0c0c0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    line-height: 1.7;
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(15, 15, 35, 0.95);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(168, 178, 255, 0.1);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1.8rem;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: var(--accent);
+}
+
+/* Hero */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 6rem 2rem 2rem;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.highlight {
+    color: var(--accent);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    max-width: 700px;
+}
+
+.languages {
+    color: var(--accent-soft);
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+
+.btn {
+    padding: 0.9rem 2.2rem;
+    background: var(--accent);
+    color: var(--bg-dark);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(168, 178, 255, 0.3);
+}
+
+/* Sections */
+.section {
+    padding: 4.5rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.alt-bg {
+    background: var(--bg-alt);
+}
+
+.section h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--accent);
+    text-align: center;
+}
+
+.section h3 {
+    font-size: 1.4rem;
+    margin: 2rem 0 1rem;
+    color: var(--accent-soft);
+}
+
+.content-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.content-card.center {
+    text-align: center;
+}
+
+.content-card p {
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+}
+
+.degree {
+    font-size: 1.1rem;
+}
+
+/* Skills Grid */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.skill-card {
+    background: var(--card-bg);
+    padding: 1.2rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    background: var(--card-hover);
+}
+
+.cert-list {
+    list-style: none;
+    margin-top: 1rem;
+}
+
+.cert-list li {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(168, 178, 255, 0.1);
+}
+
+/* Achievements Grid */
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+}
+
+.achievement-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 10px;
+    transition: transform 0.3s;
+    border-left: 3px solid var(--accent);
+}
+
+.achievement-card:hover {
+    transform: translateY(-5px);
+}
+
+.achievement-card.gold {
+    border-left-color: var(--gold);
+}
+
+.achievement-card.silver {
+    border-left-color: var(--silver);
+}
+
+.medal {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.achievement-card h4 {
+    margin-bottom: 0.3rem;
+}
+
+.achievement-card p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Leadership */
+.leadership-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.leadership-card {
+    background: var(--card-bg);
+    padding: 1.3rem;
+    border-radius: 8px;
+    border-left: 3px solid var(--accent);
+}
+
+.leadership-note {
+    margin-top: 2rem;
+    text-align: center;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Learning Grid */
+.intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+}
+
+.learning-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.learning-category {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 10px;
+}
+
+.learning-category h4 {
+    margin-bottom: 1rem;
+    color: var(--accent);
+}
+
+.learning-category ul {
+    list-style: none;
+}
+
+.learning-category li {
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(168, 178, 255, 0.08);
+}
+
+/* Links */
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: var(--accent-soft);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2.5rem;
+    color: var(--text-secondary);
+    border-top: 1px solid rgba(168, 178, 255, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    nav {
+        padding: 1rem 1.5rem;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+    .section {
+        padding: 3rem 1.5rem;
+    }
+}
