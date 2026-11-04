@@ -1,5 +1,7 @@
 # Portfolio
 My name is Brandon and on Tryhackme you may know me as THM.F1SSH
+I can communicate with: English, Chinese, Cantonese, Malay, Japanese & German
+I am a Roman Catholic and I respect every religion
 
 My average cgpa in foundation year (2026): 3.65
 My foundation course: Foundation in business and management
