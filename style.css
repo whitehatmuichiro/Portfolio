@@ -373,3 +373,25 @@ footer {
     }
 }
 
+/* Make cards clickable */
+.skill-card, .learning-category {
+    cursor: pointer;
+}
+
+.card-sub {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin-top: 0.5rem;
+    opacity: 0.8;
+}
+
+.skill-card:hover .card-sub,
+.learning-category:hover .card-sub {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+.cert-list a {
+    font-weight: 600;
+}
