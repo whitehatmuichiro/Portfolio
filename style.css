@@ -395,3 +395,172 @@ footer {
 .cert-list a {
     font-weight: 600;
 }
+
+/* === Animated Nametag Card — Floating & Glowing === */
+.nametag-section {
+  padding: 4rem 2rem;
+  display: flex;
+  justify-content: center;
+  perspective: 1000px; /* Enables 3D depth effect */
+}
+
+.nametag-card {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  background: linear-gradient(135deg, rgba(20, 5, 5, 0.92), rgba(42, 0, 0, 0.88));
+  border: 1px solid rgba(139, 0, 0, 0.25);
+  border-radius: 24px;
+  padding: 2.5rem 3rem;
+  max-width: 900px;
+  width: 100%;
+  
+  /* The magic motion properties */
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+  will-change: transform, box-shadow;
+  
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(139, 0, 0, 0.1) inset;
+  backdrop-filter: blur(10px);
+  animation: cardFloat 6s ease-in-out infinite;
+}
+
+/* Gentle up-and-down floating */
+@keyframes cardFloat {
+  0% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
+  50% { transform: translateY(-12px) rotateX(2deg) rotateY(-2deg); }
+  100% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
+}
+
+/* Photo with subtle independent motion */
+.nametag-photo {
+  flex-shrink: 0;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid rgba(255, 123, 123, 0.4);
+  box-shadow: 0 0 20px rgba(255, 123, 123, 0.2);
+  animation: photoBreathe 4s ease-in-out infinite;
+}
+
+@keyframes photoBreathe {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.nametag-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Center Info */
+.nametag-info {
+  flex: 1;
+  text-align: left;
+}
+
+.nametag-label {
+  color: #b89090;
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards 0.2s;
+}
+
+.nametag-name {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #ff7b7b;
+  margin: 0 0 0.5rem;
+  letter-spacing: 1px;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards 0.35s;
+  text-shadow: 0 0 20px rgba(255, 123, 123, 0.3);
+}
+
+.nametag-title {
+  color: #f0e6e6;
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards 0.5s;
+}
+
+.nametag-sub {
+  color: #997777;
+  font-size: 0.9rem;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards 0.65s;
+}
+
+/* Fade-in on load */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* QR Side */
+.nametag-qr {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards 0.8s;
+}
+
+.nametag-qr img {
+  width: 120px;
+  height: 120px;
+  border-radius: 10px;
+  border: 2px solid rgba(255, 123, 123, 0.3);
+  background: #fff;
+  padding: 6px;
+  transition: transform 0.3s ease;
+}
+
+.nametag-qr img:hover {
+  transform: scale(1.08) rotate(2deg);
+}
+
+.qr-label {
+  color: #b89090;
+  font-size: 0.85rem;
+}
+
+/* Mouse-follow tilt effect */
+@media (min-width: 769px) {
+  .nametag-card:hover {
+    transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nametag-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+    padding: 2rem;
+    animation: none; /* Disable float on mobile for smoothness */
+  }
+  .nametag-info {
+    text-align: center;
+  }
+  .nametag-name {
+    font-size: 2.2rem;
+  }
+}
+
