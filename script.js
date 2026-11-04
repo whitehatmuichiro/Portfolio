@@ -50,3 +50,42 @@ document.querySelectorAll('.section, .skill-card, .achievement-card, .leadership
     el.style.transition = 'all 0.6s ease';
     observer.observe(el);
 });
+
+// Mouse-follow tilt effect
+const card = document.getElementById('nametagCard');
+const profileImg = document.getElementById('profileImg');
+
+if (card) {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateX = (y - centerY) / 15;
+    const rotateY = (centerX - x) / 15;
+    
+    card.style.transform = `
+      perspective(1000px) 
+      rotateX(${rotateX}deg) 
+      rotateY(${rotateY}deg)
+      translateY(0)
+    `;
+    
+    // Subtle independent photo movement
+    if (profileImg) {
+      const moveX = (x - centerX) / 25;
+      const moveY = (y - centerY) / 25;
+      profileImg.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.05)`;
+    }
+  });
+  
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+    if (profileImg) {
+      profileImg.style.transform = 'translate(0, 0) scale(1)';
+    }
+  });
+}
