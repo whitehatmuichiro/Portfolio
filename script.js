@@ -229,6 +229,67 @@ function createRipple(x, y) {
   }, 600);
 }
 
+// === Pullable ID Card ===
+const idCardWrapper = document.getElementById('idCardWrapper');
+const idCard = document.getElementById('idCard');
+
+if (idCardWrapper && idCard) {
+  let isDragging = false;
+  let startX = 0;
+  let startY = 0;
+  let currentX = 0;
+  let currentY = 0;
+
+  idCardWrapper.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    startX = e.clientX - currentX;
+    startY = e.clientY - currentY;
+    idCardWrapper.style.cursor = 'grabbing';
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+
+    currentX = e.clientX - startX;
+    currentY = e.clientY - startY;
+
+    const rotateX = (currentY * 0.05);
+    const rotateY = (currentX * -0.05);
+
+    idCard.style.transform = `translate(${currentX}px, ${currentY}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  });
+
+  window.addEventListener('mouseup', () => {
+    isDragging = false;
+    idCardWrapper.style.cursor = 'grab';
+    idCard.style.transform = 'translate(0, 0) rotateX(0) rotateY(0)';
+  });
+
+  // Touch support
+  idCardWrapper.addEventListener('touchstart', (e) => {
+    isDragging = true;
+    const touch = e.touches[0];
+    startX = touch.clientX - currentX;
+    startY = touch.clientY - currentY;
+  });
+
+  window.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    const touch = e.touches[0];
+    currentX = touch.clientX - startX;
+    currentY = touch.clientY - startY;
+
+    const rotateX = (currentY * 0.05);
+    const rotateY = (currentX * -0.05);
+
+    idCard.style.transform = `translate(${currentX}px, ${currentY}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  });
+
+  window.addEventListener('touchend', () => {
+    isDragging = false;
+    idCard.style.transform = 'translate(0, 0) rotateX(0) rotateY(0)';
+  });
+}
 
 
 
