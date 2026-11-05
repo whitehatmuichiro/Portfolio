@@ -559,5 +559,37 @@ footer {
   }
 }
 
+/* === Global Red Glow - Follows Mouse & Touch === */
+.global-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 240px;
+  height: 240px;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 80, 120, 0.45),
+    rgba(255, 80, 120, 0.25) 35%,
+    transparent 60%
+  );
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 9999;
+}
+
+/* Optional: make it stronger on dark backgrounds */
+body.dark .global-glow {
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 80, 120, 0.55),
+    rgba(255, 80, 120, 0.3) 35%,
+    transparent 60%
+  );
+}
+
+
 }
 
