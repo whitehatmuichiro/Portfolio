@@ -143,5 +143,92 @@ if (globalGlow) {
   animateGlow();
 }
 
+// === Global Cursor Glow + Touch Ripple ===
+const cursorGlow = document.querySelector('.cursor-glow');
+const rippleContainer = document.querySelector('.touch-ripple-container');
+
+if (cursorGlow) {
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let currentX = mouseX;
+  let currentY = mouseY;
+  let isMoving = false;
+  let moveTimer;
+
+  function updateGlow(x, y) {
+    mouseX = x;
+    mouseY = y;
+    isMoving = true;
+    cursorGlow.style.opacity = '1';
+
+    clearTimeout(moveTimer);
+    moveTimer = setTimeout(() => {
+      isMoving = false;
+    }, 150);
+  }
+
+  function animateGlow() {
+    const ease = 0.15;
+
+    currentX += (mouseX - currentX) * ease;
+    currentY += (mouseY - currentY) * ease;
+
+    cursorGlow.style.transform = `translate(-50%, -50%) translate(${currentX}px, ${currentY}px)`;
+
+    if (!isMoving) {
+      cursorGlow.style.opacity = '0';
+    }
+
+    requestAnimationFrame(animateGlow);
+  }
+
+  // Mouse move
+  window.addEventListener('mousemove', (e) => {
+    updateGlow(e.clientX, e.clientY);
+  });
+
+  // Touch move
+  window.addEventListener('touchmove', (e) => {
+    const touch = e.touches[0];
+    updateGlow(touch.clientX, touch.clientY);
+  });
+
+  // Touch start
+  window.addEventListener('touchstart', (e) => {
+    const touch = e.touches[0];
+    updateGlow(touch.clientX, touch.clientY);
+    createRipple(touch.clientX, touch.clientY);
+  });
+
+  // Mouse leave
+  window.addEventListener('mouseleave', () => {
+    cursorGlow.style.opacity = '0';
+  });
+
+  // Touch end
+  window.addEventListener('touchend', () => {
+    cursorGlow.style.opacity = '0';
+  });
+
+  animateGlow();
+}
+
+// === Create Touch Ripple Wave ===
+function createRipple(x, y) {
+  if (!rippleContainer) return;
+
+  const ripple = document.createElement('div');
+  ripple.classList.add('touch-ripple');
+  ripple.style.left = x + 'px';
+  ripple.style.top = y + 'px';
+
+  rippleContainer.appendChild(ripple);
+
+  setTimeout(() => {
+    ripple.remove();
+  }, 600);
+}
+
+
 
 
