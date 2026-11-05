@@ -51,34 +51,26 @@ document.querySelectorAll('.section, .skill-card, .achievement-card, .leadership
     observer.observe(el);
 });
 
-// === Lanyard Swing & Tilt Effect ===
+// === Lanyard ID Card Tilt ===
 const idCard = document.getElementById('idCard');
-const qrCard = document.getElementById('qrCard');
 const profileImg = document.getElementById('profileImg');
 
-function setupCardTilt(card) {
-  if (!card) return;
-  
-  card.addEventListener('mousemove', (e) => {
-    const rect = card.getBoundingClientRect();
+if (idCard) {
+  idCard.addEventListener('mousemove', (e) => {
+    const rect = idCard.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
+
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    
+
     const rotateX = (y - centerY) / -25;
     const rotateY = (x - centerX) / 25;
-    
-    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-  });
-  
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = '';
-  });
-}
 
-setupCardTilt(idCard);
-setupCardTilt(qrCard);
+    idCard.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  });
 
+  idCard.addEventListener('mouseleave', () => {
+    idCard.style.transform = '';
   });
 }
