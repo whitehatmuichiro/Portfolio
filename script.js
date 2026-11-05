@@ -51,34 +51,97 @@ document.querySelectorAll('.section, .skill-card, .achievement-card, .leadership
     observer.observe(el);
 });
 
-// === Lanyard Swing & Tilt Effect ===
+// === Lanyard ID Card Tilt ===
 const idCard = document.getElementById('idCard');
-const qrCard = document.getElementById('qrCard');
 const profileImg = document.getElementById('profileImg');
 
-function setupCardTilt(card) {
-  if (!card) return;
-  
-  card.addEventListener('mousemove', (e) => {
-    const rect = card.getBoundingClientRect();
+if (idCard) {
+  idCard.addEventListener('mousemove', (e) => {
+    const rect = idCard.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
+
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    
+
     const rotateX = (y - centerY) / -25;
     const rotateY = (x - centerX) / 25;
-    
-    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+    idCard.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
   });
-  
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = '';
+
+  idCard.addEventListener('mouseleave', () => {
+    idCard.style.transform = '';
   });
 }
 
-setupCardTilt(idCard);
-setupCardTilt(qrCard);
+// === Global Red Glow - Mouse & Touch ===
+const globalGlow = document.querySelector('.global-glow');
 
+if (globalGlow) {
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let currentX = mouseX;
+  let currentY = mouseY;
+  let isMoving = false;
+  let moveTimer;
+
+  function updateGlow(x, y) {
+    mouseX = x;
+    mouseY = y;
+    isMoving = true;
+    globalGlow.style.opacity = '1';
+
+    clearTimeout(moveTimer);
+    moveTimer = setTimeout(() => {
+      isMoving = false;
+    }, 120);
+  }
+
+  function animateGlow() {
+    const ease = 0.12;
+
+    currentX += (mouseX - currentX) * ease;
+    currentY += (mouseY - currentY) * ease;
+
+    globalGlow.style.transform = `translate(-50%, -50%) translate(${currentX}px, ${currentY}px)`;
+
+    if (!isMoving) {
+      globalGlow.style.opacity = '0';
+    }
+
+    requestAnimationFrame(animateGlow);
+  }
+
+  // Mouse
+  window.addEventListener('mousemove', (e) => {
+    updateGlow(e.clientX, e.clientY);
   });
+
+  // Touch
+  window.addEventListener('touchmove', (e) => {
+    const touch = e.touches[0];
+    updateGlow(touch.clientX, touch.clientY);
+  });
+
+  // Touch start
+  window.addEventListener('touchstart', (e) => {
+    const touch = e.touches[0];
+    updateGlow(touch.clientX, touch.clientY);
+  });
+
+  // Mouse leave window
+  window.addEventListener('mouseleave', () => {
+    globalGlow.style.opacity = '0';
+  });
+
+  // Touch end
+  window.addEventListener('touchend', () => {
+    globalGlow.style.opacity = '0';
+  });
+
+  animateGlow();
 }
+
+
+
