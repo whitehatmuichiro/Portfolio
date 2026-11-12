@@ -10,23 +10,129 @@
 </head>
     
 <body>
-<!-- STEM Logo - Simple Version -->
-<div class="intro-logo-simple">
-  <svg viewBox="0 0 800 400">
-    <text x="150" y="250" font-size="90" font-weight="bold" fill="#ff8800">S</text>
-    <text x="360" y="320" font-size="90" font-weight="bold" fill="#00ffcc">T</text>
-    <text x="550" y="250" font-size="90" font-weight="bold" fill="#00ffcc">E</text>
-    <text x="700" y="320" font-size="90" font-weight="bold" fill="#ff8800">M</text>
-    
-    <text x="125" y="310" font-size="13" fill="#ff8800">SCIENCE</text>
-    <text x="330" y="380" font-size="13" fill="#00ffcc">TECHNOLOGY</text>
-    <text x="520" y="310" font-size="13" fill="#00ffcc">ENGINEERING</text>
-    <text x="670" y="380" font-size="13" fill="#ff8800">MATHEMATICS</text>
-    
-    <path d="M130 235 L210 180 L290 280 L370 200 L450 260 L530 180 L610 280 L690 235"
-      stroke="#00ffcc" stroke-width="3" fill="none" stroke-linecap="round"/>
+<!-- STEM Logo - Animated, Non-Blocking Version -->
+<style>
+/* Container only for the STEM logo */
+.stem-logo-container {
+  position: relative;
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  text-align: center;
+  overflow: hidden;
+}
+
+.stem-logo-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Initial state: letters hidden */
+.stem-letter {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.stem-letter.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Initial state: labels hidden */
+.stem-label {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.stem-label.visible {
+  opacity: 1;
+}
+
+/* Zig-zag line drawing animation */
+.stem-zig-zag {
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+  transition: stroke-dashoffset 2.5s ease-out;
+}
+
+.stem-zig-zag.draw {
+  stroke-dashoffset: 0;
+}
+
+/* Safety: no scroll locking, no overlay, no pointer-events blocking */
+.stem-logo-container,
+.stem-logo-svg,
+.stem-letter,
+.stem-label,
+.stem-zig-zag {
+  pointer-events: none;
+}
+</style>
+
+<div class="stem-logo-container">
+  <svg class="stem-logo-svg" viewBox="0 0 850 500" xmlns="http://www.w3.org/2000/svg">
+    <!-- Letters -->
+    <text class="stem-letter" x="110" y="260" font-size="130" font-weight="bold" fill="#ff8800">S</text>
+    <text class="stem-letter" x="355" y="300" font-size="130" font-weight="bold" fill="#00ffcc">T</text>
+    <text class="stem-letter" x="540" y="260" font-size="130" font-weight="bold" fill="#00ffcc">E</text>
+    <text class="stem-letter" x="720" y="300" font-size="130" font-weight="bold" fill="#ff8800">M</text>
+
+    <!-- Labels -->
+    <text class="stem-label" x="105" y="330" font-size="16" fill="#ff8800">SCIENCE</text>
+    <text class="stem-label" x="335" y="375" font-size="16" fill="#00ffcc">TECHNOLOGY</text>
+    <text class="stem-label" x="525" y="330" font-size="16" fill="#00ffcc">ENGINEERING</text>
+    <text class="stem-label" x="705" y="375" font-size="16" fill="#ff8800">MATHEMATICS</text>
+
+    <!-- Zig-zag line -->
+    <path class="stem-zig-zag"
+      d="M130 235 
+         L210 180 
+         L290 280 
+         L370 200 
+         L450 260 
+         L530 180 
+         L610 280 
+         L690 235"
+      stroke="#00ffcc"
+      stroke-width="3.5"
+      fill="none"
+      stroke-linecap="round"
+      stroke-linejoin="round"/>
   </svg>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const zigZag = document.querySelector('.stem-zig-zag');
+  const letters = document.querySelectorAll('.stem-letter');
+  const labels = document.querySelectorAll('.stem-label');
+
+  // Reset in case of page refresh
+  zigZag.classList.remove('draw');
+  letters.forEach(el => el.classList.remove('visible'));
+  labels.forEach(el => el.classList.remove('visible'));
+
+  // Start line draw
+  setTimeout(() => {
+    zigZag.classList.add('draw');
+  }, 300);
+
+  // Show letters one by one after line reaches their position
+  setTimeout(() => letters[0].classList.add('visible'), 500);
+  setTimeout(() => letters[1].classList.add('visible'), 1000);
+  setTimeout(() => letters[2].classList.add('visible'), 1500);
+  setTimeout(() => letters[3].classList.add('visible'), 2000);
+
+  // Show labels shortly after each letter
+  setTimeout(() => labels[0].classList.add('visible'), 800);
+  setTimeout(() => labels[1].classList.add('visible'), 1300);
+  setTimeout(() => labels[2].classList.add('visible'), 1800);
+  setTimeout(() => labels[3].classList.add('visible'), 2300);
+});
+</script>
+
 
 <!-- Main Website Content -->
 <div class="main-content" id="mainContent">
