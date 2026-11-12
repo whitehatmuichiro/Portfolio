@@ -908,4 +908,9 @@ body.dark .global-glow {
   animation: fadeIn 0.8s ease forwards 3.7s;
 }
 
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
 
