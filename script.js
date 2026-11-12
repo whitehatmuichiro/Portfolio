@@ -291,17 +291,16 @@ if (idCardWrapper && idCard) {
   });
 }
 
-// Intro Logo Animation Duration
 const introOverlay = document.getElementById("introOverlay");
 const mainContent = document.getElementById("mainContent");
 
-// Prevent scroll during intro
 if (introOverlay) {
   document.body.style.overflow = "hidden";
 
   setTimeout(() => {
     document.body.style.overflow = "auto";
-  }, 9000);
+  }, 13000);
 }
+
 
 
