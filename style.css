@@ -839,106 +839,23 @@ body.dark .global-glow {
   }
 }
 
-/* Intro Overlay */
-.intro-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
+.stem-logo-svg {
   width: 100%;
-  height: 100%;
-  background: #0a0f0f;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.intro-logo-wrapper {
-  position: relative;
-  width: 800px;
-  max-width: 90%;
-  opacity: 0;
-  transform: scale(0.8);
-  animation: logoFadeIn 1.5s ease forwards 0.5s;
-}
-
-.intro-logo {
-  width: 100%;
+  max-width: 850px;
   height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
-.logo-shine {
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(0, 255, 204, 0.5),
-    transparent
-  );
-  pointer-events: none;
-  animation: shine 2.2s ease forwards 7.5s;
+.stem-line {
+  stroke-dasharray: 650;
+  stroke-dashoffset: 650;
+  animation: drawLine 1.8s ease forwards;
 }
 
-.intro-overlay {
-  animation: zoomIntoSite 1.8s ease forwards 10s;
-}
-
-.main-content {
+.stem-text {
   opacity: 0;
-  transform: scale(1.1);
-  animation: showMainContent 1s ease forwards 10.8s;
-}
-
-
-.letter-s {
-  opacity: 0;
-  transform: translateX(-120px);
-  animation: slideInLeft 1.2s ease forwards 1s;
-}
-
-.label-s {
-  animation: fadeIn 0.8s ease forwards 2.2s;
-}
-
-.letter-t {
-  opacity: 0;
-  transform: translateY(120px);
-  animation: slideInUp 1.2s ease forwards 1.5s;
-}
-
-.label-t {
-  animation: fadeIn 0.8s ease forwards 2.7s;
-}
-
-.letter-e {
-  opacity: 0;
-  transform: translateY(-120px);
-  animation: slideInDown 1.2s ease forwards 2s;
-}
-
-.label-e {
-  animation: fadeIn 0.8s ease forwards 3.2s;
-}
-
-.letter-m {
-  opacity: 0;
-  transform: translateX(120px);
-  animation: slideInRight 1.2s ease forwards 2.5s;
-}
-
-.label-m {
-  animation: fadeIn 0.8s ease forwards 3.7s;
-}
-
-.zig-zag-line {
-  stroke-dasharray: 1400;
-  stroke-dashoffset: 1400;
-  animation: drawLine 3s ease forwards 4.2s;
+  animation: fadeInSTEM 0.8s ease forwards 1.8s;
 }
 
 @keyframes drawLine {
@@ -947,10 +864,11 @@ body.dark .global-glow {
   }
 }
 
-
-@keyframes fadeIn {
+@keyframes fadeInSTEM {
   to {
     opacity: 1;
   }
+}
+
 }
 
